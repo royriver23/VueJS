@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Training</title>
+    <style type="text/css">
+      .color-red { color: red; }
+
+      .is-loading { background-color: red; }
+    </style>
+  </head>
+  <body>
+
+    <div id="root">
+
+    <button :title="title">Hover Over Me</button>
+    <!-- : is a shorthand for v-bind: -->
+
+    <h1 :class="className">Hello World!</h1>
+
+    <!-- Conditional class -->
+    <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Click Me</button>
+
+    <!-- Conditional disabled -->
+    <button :disabled="disabled" @click="toggleDisabled">Click Me</button>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.js"></script>
+
+    <script>
+
+      var app = new Vue({
+        el: '#root',
+        data: {
+          title: 'This is my title from JS',
+          className: 'color-red',
+          isLoading: false,
+          disabled: false
+        },
+
+        methods: {
+
+          toggleClass() {
+            this.isLoading = !this.isLoading;
+          },
+
+          toggleDisabled() {
+            this.disabled = true;
+          }
+
+        }
+
+      });
+
+    </script>
+
+  </body>
+</html>
