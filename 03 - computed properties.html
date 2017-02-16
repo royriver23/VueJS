@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Computed Properties</title>
+    <style type="text/css">
+      .completed { color: green; }
+    </style>
+  </head>
+  <body>
+
+    <div id="root">
+
+      <h1 v-text="header"></h1>
+
+      <ul>
+        <!-- <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li> -->
+        <div v-for="task in tasks" :class="{ 'completed': task.completed }">
+          {{ task.description }}
+          <input type="checkbox" name="taskCompleted" v-model="task.completed">
+        </div>
+      </ul>
+
+      <h1>Incomplete Tasks</h1>
+
+      <ul>
+        <!-- <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li> -->
+        <li v-for="task in incompleteTasks" v-text="task.description"></li>
+      </ul>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.js"></script>
+
+    <script>
+
+      var app = new Vue({
+
+        el: '#root',
+
+        data: {
+          header: 'All tasks',
+          tasks: [
+            { description: 'Go to the store', completed: true },
+            { description: 'Finish Screencast', completed: false },
+            { description: 'Make donation', completed: false },
+            { description: 'Clear inbox', completed: false },
+            { description: 'Make dinner', completed: false },
+            { description: 'Clean room', completed: true },
+          ]
+        },
+
+        computed: {
+          // reverseMessage() {
+          //   return this.message.split('').reverse().join('')
+          // }
+          incompleteTasks() {
+            return this.tasks.filter(task => ! task.completed );
+          }
+
+        }
+      });
+
+    </script>
+
+  </body>
+</html>
+
