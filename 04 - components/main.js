@@ -1,21 +1,28 @@
-Vue.component('task', {
-    template: '<li><slot></slot></li>'
-});
-
-Vue.component('links', {
-    template: '<li v-for="link in data().links"><a href="link.url">link.name</a></li>',
+Vue.component('task-list', {
+    template: `
+      <div>
+        <task v-for="task in tasks">{{ task.task }}</task>
+      </div>
+    `,
 
     data() {
       return {
-        links: [
-          { url: 'http://www.google.com', name: 'Google'},
-          { url: 'http://www.youtube.com', name: 'Youtube'},
-          { url: 'http://www.facebook.com', name: 'Facebook'},
-          { url: 'http://www.linkedin.com', name: 'LinkedIn'}
+        tasks: [
+          { task: 'Go to the store', complete: true },
+          { task: 'Finish Screencast', complete: false },
+          { task: 'Make donation', complete: false },
+          { task: 'Clear inbox', complete: false },
+          { task: 'Make dinner', complete: false },
+          { task: 'Clean room', complete: true }
         ]
       };
     }
 });
+
+Vue.component('task', {
+    template: '<li><slot></slot></li>'
+});
+
 
 new Vue({
   el: '#root'
