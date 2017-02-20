@@ -4,6 +4,7 @@
     <title>Computed Properties</title>
     <style type="text/css">
       .completed { color: #5EFF4E; }
+      .incompleted { color: #F60D2E; }
     </style>
   </head>
   <body>
@@ -12,17 +13,15 @@
 
       <h1 v-text="header"></h1>
 
-      <ul>
-        <!-- <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li> -->
-        <div v-for="task in tasks" :class="{ 'completed': task.completed }">
-          {{ task.description }}
-          <input type="checkbox" name="taskCompleted" v-model="task.completed">
-        </div>
-      </ul>
+      <!-- <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li> -->
+      <div v-for="task in tasks" :class="{ 'completed': task.completed }">
+        {{ task.description }}
+        <input type="checkbox" name="taskCompleted" v-model="task.completed">
+      </div>
 
       <h1>Incomplete Tasks</h1>
 
-      <ul>
+      <ul class="incompleted" >
         <!-- <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li> -->
         <li v-for="task in incompleteTasks" v-text="task.description"></li>
       </ul>
